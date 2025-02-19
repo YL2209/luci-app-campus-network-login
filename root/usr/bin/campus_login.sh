@@ -41,7 +41,7 @@ attempt_login() {
     echo "$output" > "$CURL_LOG"
     
     # 同时记录到系统日志
-    log_to_system "notice" "CURL Output: $(cat "$CURL_LOG")"
+    # log_to_system "notice" "CURL Output: $(cat "$CURL_LOG")"
     
     return $?
 }
