@@ -1,25 +1,49 @@
-# SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2024 Your Name <your.email@example.com>
-
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=Campus Network Login
-LUCI_DEPENDS:=+curl
-LUCI_PKGARCH:=all
-
-PKG_NAME:=luci-app-campusnet-login
+PKG_NAME:=luci-app-campus-network-login
 PKG_VERSION:=1.0
 PKG_RELEASE:=1
 
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
+
+include $(INCLUDE_DIR)/package.mk
+
+define Package/$(PKG_NAME)
+  SECTION:=luci
+  CATEGORY:=LuCI
+  SUBMENU:=3. Applications
+  TITLE:=LuCI app for Campus Network Login
+  DEPENDS:=+luci-base +curl
+  PKGARCH:=all
+endef
+
 define Package/$(PKG_NAME)/description
-This plugin provides a web interface to configure and run a campus network login script.
+  LuCI interface for campus network login with cron scheduling.
 endef
 
-define Package/$(PKG_NAME)/conffiles
-/etc/login_config.ini
+define Build/Prepare
 endef
 
-include $(TOPDIR)/feeds/luci/luci.mk
+define Build/Configure
+endef
 
-# call BuildPackage - OpenWrt buildroot signature
+define Build/Compile
+endef
+
+define Package/$(PKG_NAME)/install
+	$(INSTALL_DIR) $(1)/etc/config
+	$(INSTALL_CONF) ./files/etc/config/campus_network $(1)/etc/config/campus_network
+	
+	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/controller
+	$(INSTALL_DATA) ./files/luasrc/controller/campus_network.lua $(1)/usr/lib/lua/luci/controller/
+	
+	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/model/cbi/campus_network
+	$(INSTALL_DATA) ./files/luasrc/model/cbi/campus_network/login.lua $(1)/usr/lib/lua/luci/model/cbi/campus_network/
+	
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) ./files/usr/bin/campus_login.sh $(1)/usr/bin/
+	
+	$(INSTALL_DIR) $(1)/etc/xyw
+endef
+
 $(eval $(call BuildPackage,$(PKG_NAME)))

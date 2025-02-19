@@ -1,0 +1,8 @@
+config login 'login'
+	option username '240303120335'
+	option pwd '1203352024'
+	option wlanuserip '132af1ce6c89eef5260c1d615182397b'
+	option nasip '09bff317362e3c18069258ead4553fb6'
+	option login_url 'http://10.0.1.2:9090/zportal/login/do'
+	option max_attempts '5'
+	option cron_schedule '*/5 * * * *'
