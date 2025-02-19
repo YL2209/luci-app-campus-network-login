@@ -1,0 +1,38 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+msgid "Campus Network Login"
+msgstr ""
+
+msgid "Campus Network Login Settings"
+msgstr ""
+
+msgid "Configure parameters for campus network authentication and scheduling."
+msgstr ""
+
+msgid "Login Parameters"
+msgstr ""
+
+msgid "Username"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "WLAN User IP"
+msgstr ""
+
+msgid "NAS IP"
+msgstr ""
+
+msgid "Login URL"
+msgstr ""
+
+msgid "Max Attempts"
+msgstr ""
+
+msgid "Cron Schedule"
+msgstr ""
+
+msgid "Cron expression (e.g. '*/5 * * * *' for every 5 minutes)"
+msgstr ""
