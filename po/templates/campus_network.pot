@@ -34,7 +34,7 @@ msgstr ""
 msgid "Cron Schedule"
 msgstr ""
 
-msgid "Cron expression (e.g. '*/5 * * * *' for every 5 minutes)"
+msgid "Cron expression (e.g. '*/1 * * * *' for every 1 minutes)"
 msgstr ""
 
 msgid "Click to view documentation"

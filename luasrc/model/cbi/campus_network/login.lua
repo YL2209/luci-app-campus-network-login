@@ -21,7 +21,7 @@ s:option(Value, "max_attempts", translate("Max Attempts")).datatype = "uinteger"
 
 -- Cron Schedule
 local cron = s:option(Value, "cron_schedule", translate("Cron Schedule"),
-    translate("Cron expression (e.g. '*/1 * * * *' for every 5 minutes)"))
+    translate("Cron expression (e.g. '*/1 * * * *' for every 1 minutes)"))
 cron.rmempty = false
 
 function m.on_after_commit(self)

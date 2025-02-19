@@ -47,8 +47,8 @@ msgstr "最大尝试次数"
 msgid "Cron Schedule"
 msgstr "定时计划"
 
-msgid "Cron expression (e.g. '*/5 * * * *' for every 5 minutes)"
-msgstr "Cron表达式 (例如：'*/5 * * * *' 表示每5分钟)"
+msgid "Cron expression (e.g. '*/1 * * * *' for every 1 minutes)"
+msgstr "Cron表达式 (例如：'*/1 * * * *' 表示每1分钟)"
 
 msgid "Click to view documentation"
 msgstr "点击查看文档"
