@@ -4,23 +4,36 @@ local m = Map("campus_network", translate("Campus Network Login Settings"),
 local s = m:section(NamedSection, "login", "login", translate("Login Parameters"))
 s.addremove = false
 
+local help_link = s:option(DummyValue, "help_link", translate("Documentation"))
+    help_link.rawhtml = true
+    help_link.value = '<a href="https://blog.naokuo.top/" target="_blank">'..translate("Click to view documentation")..'</a>'
+    
 s:option(Value, "username", translate("Username")).rmempty = false
 s:option(Value, "pwd", translate("Password")).password = true
 s:option(Value, "wlanuserip", translate("WLAN User IP")).rmempty = false
 s:option(Value, "nasip", translate("NAS IP")).rmempty = false
 s:option(Value, "login_url", translate("Login URL")).rmempty = false
+local ping_ip = s:option(Value, "ping_ip", translate("Ping Test IP"), 
+    translate("IP address for network connectivity detection (e.g. 114.114.114.114)"))
+ping_ip.datatype = "ip4addr"  -- IP格式验证
+ping_ip.rmempty = false       -- 必填项
 s:option(Value, "max_attempts", translate("Max Attempts")).datatype = "uinteger"
 
 -- Cron Schedule
 local cron = s:option(Value, "cron_schedule", translate("Cron Schedule"),
-    translate("Cron expression (e.g. '*/5 * * * *' for every 5 minutes)"))
+    translate("Cron expression (e.g. '*/1 * * * *' for every 5 minutes)"))
 cron.rmempty = false
 
 function m.on_after_commit(self)
     local uci = require "luci.model.uci".cursor()
     local cron_schedule = uci:get("campus_network", "login", "cron_schedule") or ""
     local script_path = "/usr/bin/campus_login.sh"
-    
+
+    -- 设置脚本权限
+    os.execute("chmod 755 /usr/bin/campus_login.sh")
+    -- 创建日志目录（如果不存在）
+    -- os.execute("mkdir -p /var/log/campus_network && chmod 755 /var/log/campus_network")
+
     -- 安全删除旧任务
     os.execute("crontab -l | grep -v '"..script_path.."' | crontab -")
     

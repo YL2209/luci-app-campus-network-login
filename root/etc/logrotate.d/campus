@@ -1,0 +1,8 @@
+/etc/xyw/curl_log.txt {
+    daily
+    rotate 7
+    missingok
+    compress
+    delaycompress
+    endscript
+}

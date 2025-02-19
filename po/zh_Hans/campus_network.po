@@ -33,10 +33,10 @@ msgid "Password"
 msgstr "密码"
 
 msgid "WLAN User IP"
-msgstr "用户IP地址"
+msgstr "用户 IP 地址"
 
 msgid "NAS IP"
-msgstr "接入点IP"
+msgstr "接入点 IP"
 
 msgid "Login URL"
 msgstr "认证地址"
@@ -49,3 +49,24 @@ msgstr "定时计划"
 
 msgid "Cron expression (e.g. '*/5 * * * *' for every 5 minutes)"
 msgstr "Cron表达式 (例如：'*/5 * * * *' 表示每5分钟)"
+
+msgid "Click to view documentation"
+msgstr "点击查看文档"
+
+msgid "Documentation"
+msgstr "文档"
+
+msgid "Ping Test IP"
+msgstr "网络检测 IP"
+
+msgid "IP address for network connectivity detection (e.g. 114.114.114.114)"
+msgstr "用于网络连通性检测的IP地址（如：114.114.114.114）"
+
+msgid "View Logs"
+msgstr "查看日志"
+
+msgid "Login Settings"
+msgstr "登录设置"
+
+msgid "Logs Info"
+msgstr "日志信息"

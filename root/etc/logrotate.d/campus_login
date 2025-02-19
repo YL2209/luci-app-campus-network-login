@@ -1,0 +1,8 @@
+/etc/xyw/log.txt {
+    rotate 5
+    weekly
+    missingok
+    compress
+    delaycompress
+    notifempty
+}

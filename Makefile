@@ -9,8 +9,9 @@ include $(TOPDIR)/rules.mk
 LUCI_TITLE:=LuCI app for Campus Network Login
 LUCI_DEPENDS:=+luci-base +curl
 LUCI_PKGARCH:=all
-PKG_VERSION:=1.2
+PKG_VERSION:=1.23
 PKG_RELEASE:=1
+EXTRA_DEPENDS:=+campus_network +luci-compat
 
 include $(TOPDIR)/feeds/luci/luci.mk
 

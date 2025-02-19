@@ -36,3 +36,25 @@ msgstr ""
 
 msgid "Cron expression (e.g. '*/5 * * * *' for every 5 minutes)"
 msgstr ""
+
+msgid "Click to view documentation"
+msgstr ""
+
+msgid "Documentation"
+msgstr ""
+
+msgid "Ping Test IP"
+msgstr ""
+
+msgid "IP address for network connectivity detection (e.g. 114.114.114.114)"
+msgstr ""
+
+msgid "View Logs"
+msgstr ""
+
+msgid "Login Settings"
+msgstr ""
+
+msgid "Logs Info"
+msgstr ""
+

@@ -1,0 +1,34 @@
+{
+  "luci-app-campus-network-login": {
+    "description": "Grant UCI access for luci-app-campus-network-login",
+    "read": {
+      "uci": [
+        "campus_network"
+      ],
+      "file": {
+        "/usr/bin/campus_login.sh": [
+          "execute"
+        ],
+        "/etc/xyw/log.txt": [
+          "read"
+        ],
+        "/etc/xyw/curl_log.txt": [
+          "read"
+        ]
+      }
+    },
+    "write": {
+      "uci": [
+        "campus_network"
+      ],
+      "file": {
+        "/etc/config/campus_network": [
+          "write"
+        ],
+        "/usr/bin/campus_login.sh": [
+          "write"
+        ]
+      }
+    }
+  }
+}
