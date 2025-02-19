@@ -1,0 +1,91 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: luci-app-campusnet-login 1.0\n"
+"Report-Msgid-Bugs-To: your.email@example.com\n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"PO-Revision-Date: 2024-01-02 00:00+0000\n"
+"Last-Translator: Your Name <your.email@example.com>\n"
+"Language-Team: Chinese (Simplified)\n"
+"Language: zh_Hans\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Campus Network Login"
+msgstr "校园网登录"
+
+msgid "Username:"
+msgstr "用户名："
+
+msgid "Password:"
+msgstr "密码："
+
+msgid "WLAN User IP:"
+msgstr "无线局域网用户IP："
+
+msgid "NAS IP:"
+msgstr "网络接入服务器IP："
+
+msgid "Save Config"
+msgstr "保存配置"
+
+msgid "Run Login Script"
+msgstr "运行登录脚本"
+
+msgid "Failed to connect to the Internet after $MAX_ATTEMPTS attempts."
+msgstr "经过$MAX_ATTEMPTS次尝试后，仍无法连接到互联网。"
+
+msgid "Internet OK"
+msgstr "网络正常"
+
+msgid "Internet connection failed. Attempt $((ATTEMPT + 1)) to log in."
+msgstr "网络连接失败。正在进行第$((ATTEMPT + 1))次登录尝试。"
+
+msgid "Login data: $LOGIN_DATA"
+msgstr "登录数据：$LOGIN_DATA"
+
+msgid "Login attempt output: $CURL_OUTPUT"
+msgstr "登录尝试输出：$CURL_OUTPUT"
+
+msgid "Loaded config: USER=$USER, PWD=***, WLANUSERIP=$WLANUSERIP, NASIP=$NASIP"
+msgstr "已加载配置：用户名=$USER，密码=***，无线局域网用户IP=$WLANUSERIP，网络接入服务器IP=$NASIP"
+
+msgid "Config file $CONFIG_FILE not found. Please create it with the required variables."
+msgstr "未找到配置文件$CONFIG_FILE。请使用所需变量创建该文件。"
+
+msgid "Login URL:"
+msgstr "登录网址："
+
+msgid "Ping IP for Connectivity Test:"
+msgstr "用于测试连通性的Ping IP："
+
+msgid "Maximum Attempts:"
+msgstr "最大尝试次数："
+
+msgid "Username cannot be empty."
+msgstr "用户名不能为空。"
+
+msgid "Password cannot be empty."
+msgstr "密码不能为空。"
+
+msgid "Invalid WLAN User IP."
+msgstr "无效的无线局域网用户IP。"
+
+msgid "Invalid NAS IP."
+msgstr "无效的网络接入服务器IP。"
+
+msgid "Invalid Login URL."
+msgstr "无效的登录网址。"
+
+msgid "Invalid Ping IP."
+msgstr "无效的Ping IP。"
+
+msgid "Maximum attempts must be a positive integer."
+msgstr "最大尝试次数必须为正整数。"
+
+msgid "Login successful"
+msgstr "登录成功"
+
+msgid "Curl request failed with status $CURL_STATUS"
+msgstr "Curl请求失败，状态码为$CURL_STATUS"
