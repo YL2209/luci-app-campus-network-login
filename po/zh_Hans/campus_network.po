@@ -70,3 +70,6 @@ msgstr "登录设置"
 
 msgid "Logs Info"
 msgstr "日志信息"
+
+msgid "CURL Logs"
+msgstr "请求日志"

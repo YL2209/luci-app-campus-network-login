@@ -58,3 +58,5 @@ msgstr ""
 msgid "Logs Info"
 msgstr ""
 
+msgid "CURL Logs"
+msgstr ""
