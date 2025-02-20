@@ -15,13 +15,13 @@ pass.rmempty = false
 s:option(Value, "wlanuserip", translate("WLAN User IP")).rmempty = false
 s:option(Value, "nasip", translate("NAS IP")).rmempty = false
 s:option(Value, "login_url", translate("Login URL")).rmempty = false
-ping_ip = s:option(Value, "ping_ip", translate("Ping Test IP"),translate("IP address for network connectivity detection (e.g. 114.114.114.114)"))
+ping_ip = s:option(Value, "ping_ip", translate("Ping Test IP"), translate("IP address for network connectivity detection (e.g. 114.114.114.114)"))
 ping_ip.datatype = "ip4addr"  -- IP格式验证
 ping_ip.rmempty = false       -- 必填项
 s:option(Value, "max_attempts", translate("Max Attempts")).datatype = "uinteger"
 
 -- Cron Schedule
-cron = s:option(Value, "cron_schedule", translate("Cron Schedule"),translate("Cron expression (e.g. '*/1 * * * *' for every 1 minutes)"))
+cron = s:option(Value, "cron_schedule", translate("Cron Schedule"), translate("Cron expression (e.g. '*/1 * * * *' for every 1 minutes)"))
 cron.rmempty = false
 
 function m.on_after_commit(self)

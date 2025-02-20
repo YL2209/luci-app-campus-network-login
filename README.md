@@ -2,6 +2,10 @@
 
 - 本项目由AI生成
 
+### 文档
+
+- [卓智校园网自动登录](https://blog.naokuo.top/p/522a17f8.html)
+
 ### 功能说明：
 - 校园网登录
 - Web界面路径：服务 -> Campus Network Login
