@@ -21,6 +21,8 @@ LOGIN_DATA="username=$USERNAME&pwd=$PWD&validCodeFlag=false&wlanuserip=$WLANUSER
 ATTEMPT=0
 
 LOG="/etc/xyw/log.txt"
+echo " " > "$LOG"
+
 # 日志函数
 log_to_system() {
     local level=$1
