@@ -35,8 +35,6 @@ ATTEMPT=0
 CURL_LOG="/etc/xyw/curl_log.txt"
 # 执行 curl 并记录
 attempt_login() {
-    local url=$1
-    local data=$2
     local output=$(curl -s -d "$LOGIN_DATA" "$LOGIN_URL")
     # 记录到文件
     echo "$output" > "$CURL_LOG"
