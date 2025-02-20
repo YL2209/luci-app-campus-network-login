@@ -30,7 +30,7 @@ function m.on_after_commit(self)
     local script_path = "/usr/bin/campus_login.sh"
 
     -- 设置脚本权限
-    -- os.execute("chmod 755 /usr/bin/campus_login.sh")
+    os.execute("chmod 755 /usr/bin/campus_login.sh")
     -- 创建日志目录（如果不存在）
     -- os.execute("mkdir -p /var/log/campus_network && chmod 755 /var/log/campus_network")
 
