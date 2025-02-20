@@ -20,7 +20,7 @@ pre.clean-log {
         %>
         <pre class="clean-log"><%= luci.util.pcdata(logs) %></pre>
     </div>
-    <h3><%:CURL 日志%></h3>    
+    <h3><%:CURL Logs%></h3>    
     <div class="cbi-section">
         <% 
             local curl_log = luci.sys.exec("cat /etc/xyw/curl_log.txt | tail -n 1") 
