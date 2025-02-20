@@ -2,23 +2,13 @@
 
 # 获取UCI配置参数
 CONFIG="campus_network.login"
-USERNAME=$(uci -q get "$CONFIG.username") || USERNAME=""
-PWD=$(uci -q get "$CONFIG.pwd") || PWD=""
-WLANUSERIP=$(uci -q get "$CONFIG.wlanuserip") || WLANUSERIP=""
-NASIP=$(uci -q get "$CONFIG.nasip") || NASIP=""
-LOGIN_URL=$(uci -q get "$CONFIG.login_url") || LOGIN_URL=""
+USERNAME=$(uci -q get "$CONFIG.username")
+PWD=$(uci -q get "$CONFIG.pwd")
+WLANUSERIP=$(uci -q get "$CONFIG.wlanuserip")
+NASIP=$(uci -q get "$CONFIG.nasip")
+LOGIN_URL=$(uci -q get "$CONFIG.login_url")
 MAX_ATTEMPTS=$(uci -q get "$CONFIG.max_attempts") || MAX_ATTEMPTS=5
-PING_IP=$(uci -q get "$CONFIG.ping_ip") || PING_IP="114.114.114.114"  # 默认回退
-
-# 检查必要参数
-if [ -z "$USERNAME" ] || [ -z "$PWD" ] || [ -z "$WLANUSERIP" ] || [ -z "$NASIP" ] || [ -z "$LOGIN_URL" ]; then
-    echo "$(date): Configuration Error - Missing parameters!" >> /etc/xyw/log.txt
-    exit 1
-fi
-
-# 构造登录数据
-LOGIN_DATA="username=$USERNAME&pwd=$PWD&validCodeFlag=false&wlanuserip=$WLANUSERIP&nasip=$NASIP"
-ATTEMPT=0
+PING_IP=$(uci -q get "$CONFIG.ping_ip") || PING_IP="114.114.114.114"
 
 LOG="/etc/xyw/log.txt"
 echo " " > "$LOG"
@@ -32,19 +22,26 @@ log_to_system() {
     echo "$(date "+%Y-%m-%d %H:%M:%S") [$level] $msg" >> "$LOG"
 }
 
+# 检查必要参数
+if [ -z "$USERNAME" ] || [ -z "$PWD" ] || [ -z "$WLANUSERIP" ] || [ -z "$NASIP" ] || [ -z "$LOGIN_URL" ]; then
+    log_to_system info "配置错误-缺少参数！"
+    exit 1
+fi
+
+# 构造登录数据
+LOGIN_DATA="username=$USERNAME&pwd=$PWD&validCodeFlag=false&wlanuserip=$WLANUSERIP&nasip=$NASIP"
+ATTEMPT=0
+
 CURL_LOG="/etc/xyw/curl_log.txt"
 # 执行 curl 并记录
 attempt_login() {
     local url=$1
     local data=$2
     local output=$(curl -s -d "$LOGIN_DATA" "$LOGIN_URL")
-    
     # 记录到文件
     echo "$output" > "$CURL_LOG"
-    
     # 同时记录到系统日志
     # log_to_system "notice" "CURL Output: $(cat "$CURL_LOG")"
-    
     return $?
 }
 
