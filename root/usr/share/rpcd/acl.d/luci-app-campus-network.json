@@ -7,12 +7,9 @@
       ],
       "file": {
         "/usr/bin/campus_login.sh": [
-          "execute"
+          "exec"
         ],
-        "/etc/xyw/log.txt": [
-          "read"
-        ],
-        "/etc/xyw/curl_log.txt": [
+        "/etc/xyw/*": [
           "read"
         ]
       }
@@ -26,6 +23,9 @@
           "write"
         ],
         "/usr/bin/campus_login.sh": [
+          "write"
+        ],
+        "/etc/xyw/*": [
           "write"
         ]
       }
