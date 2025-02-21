@@ -10,8 +10,8 @@ LOGIN_URL=$(uci -q get "$CONFIG.login_url")
 MAX_ATTEMPTS=$(uci -q get "$CONFIG.max_attempts") || MAX_ATTEMPTS=5
 PING_IP=$(uci -q get "$CONFIG.ping_ip") || PING_IP="114.114.114.114"
 
-LOG="/etc/xyw/log.txt"
-echo " " > "$LOG"
+LOG="/etc/campus_network/log.txt"
+echo -n "" > "$LOG"
 
 # 日志函数
 log_to_system() {
@@ -23,8 +23,13 @@ log_to_system() {
 }
 
 # 检查必要参数
-if [ -z "$USERNAME" ] || [ -z "$PWD" ] || [ -z "$WLANUSERIP" ] || [ -z "$NASIP" ] || [ -z "$LOGIN_URL" ]; then
-    log_to_system info "配置错误-缺少参数！"
+if [ -z "$USERNAME" ] || \
+   [ -z "$PWD" ] || \
+   [ -z "$WLANUSERIP" ] || \
+   [ -z "$NASIP" ] || \
+   [ -z "$LOGIN_URL" ]
+then
+    log_to_system err "配置错误-缺少参数！"
     exit 1
 fi
 
@@ -32,7 +37,7 @@ fi
 LOGIN_DATA="username=$USERNAME&pwd=$PWD&validCodeFlag=false&wlanuserip=$WLANUSERIP&nasip=$NASIP"
 ATTEMPT=0
 
-CURL_LOG="/etc/xyw/curl_log.txt"
+CURL_LOG="/etc/campus_network/curl_log.txt"
 # 执行 curl 并记录
 attempt_login() {
     local output=$(curl -s -d "$LOGIN_DATA" "$LOGIN_URL")

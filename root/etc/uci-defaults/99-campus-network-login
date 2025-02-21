@@ -1,0 +1,4 @@
+#!/bin/sh
+
+chmod +x /usr/libexec/campus_login 2>&1 &
+exit 0

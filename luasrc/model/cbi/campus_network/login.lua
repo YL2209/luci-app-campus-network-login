@@ -29,11 +29,6 @@ function m.on_after_commit(self)
     local cron_schedule = uci:get("campus_network", "login", "cron_schedule") or ""
     local script_path = "/usr/bin/campus_login.sh"
 
-    -- 设置脚本权限
-    os.execute("chmod 755 /usr/bin/campus_login.sh")
-    -- 创建日志目录（如果不存在）
-    -- os.execute("mkdir -p /var/log/campus_network && chmod 755 /var/log/campus_network")
-
     -- 安全删除旧任务
     os.execute("crontab -l | grep -v '"..script_path.."' | crontab -")
     

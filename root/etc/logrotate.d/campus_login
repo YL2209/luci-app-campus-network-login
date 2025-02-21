@@ -1,8 +1,6 @@
-/etc/xyw/log.txt {
-    rotate 5
-    weekly
+/etc/campus_network/*.txt {
+    daily
+    rotate 7
     missingok
     compress
-    delaycompress
-    notifempty
 }

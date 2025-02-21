@@ -14,14 +14,14 @@ pre.clean-log {
     <div class="cbi-section">
         <% 
             -- 紧凑写法避免换行 
-            local logs = luci.sys.exec("cat /etc/xyw/log.txt | tail -n 10 | sed '/^$/d'") 
+            local logs = luci.sys.exec("cat /etc/campus_network/log.txt | tail -n 10 | sed '/^$/d'") 
         %>
         <pre class="clean-log"><%= luci.xml.pcdata(logs) %></pre>
     </div>
     <h4><%:CURL Logs%></h4>    
     <div class="cbi-section">
         <% 
-            local curl_log = luci.sys.exec("cat /etc/xyw/curl_log.txt | tail -n 1") 
+            local curl_log = luci.sys.exec("cat /etc/campus_network/curl_log.txt | tail -n 1") 
         %>      
       <pre class="clean-log"><%= luci.xml.pcdata(curl_log) %></pre>
   </div>
