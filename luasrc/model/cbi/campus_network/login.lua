@@ -31,7 +31,7 @@ cron.rmempty = false
 function m.on_after_commit(self)
     local uci = require "luci.model.uci".cursor()
     local cron_schedule = uci:get("campus_network", "login", "cron_schedule") or ""
-    local script_path = "/usr/bin/campus_login.sh"
+    local script_path = "/usr/libexec/campus_login"
 
     -- 安全删除旧任务
     os.execute("crontab -l | grep -v '"..script_path.."' | crontab -")
