@@ -1,28 +1,38 @@
 <%+header%>
-
-<style>
-/* 清除预格式文本默认间距 */
-pre.clean-log {
-    margin: 0;
-    padding: 5px;
-}
-</style>
-
-<div class="cbi-map">
-    <div class="cbi-section">
-        <h3><%:Logs Info%></h3>
-        <% 
-            local logs = luci.sys.exec("cat /etc/campus_network/log.txt | tail -n 10 | sed '/^$/d'") 
-        %>
-        <pre class="clean-log"><%= luci.xml.pcdata(logs) %></pre>
+    <div class="cbi-map">
+        <style>
+            pre.clean-log {
+                padding: 10px;
+                border: 1px solid #464646;
+                border-radius: 6px;
+                font-family: Consolas, Menlo, Monaco, monospace;
+                font-size: 14px;
+                line-height: 1.6;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+                overflow-y: auto;
+                max-height: 600px;
+            }
+        </style>
+        <div class="cbi-section">
+            <h3><%:Logs Info%></h3>
+            <% 
+                local logs=luci.sys.exec("cat /etc/campus_network/log.txt | tail -n 10 | sed '/^$/d'") 
+            %>
+            <pre class=" clean-log"><%= luci.xml.pcdata(logs) %></pre>
+        </div>
+        <div class="cbi-section">
+            <h3><%:CURL Logs%></h3>
+            <% 
+                local curl_log=luci.sys.exec("cat /etc/campus_network/curl_log.txt | tail -n 1") 
+            %>
+            <pre class="clean-log"><%= luci.xml.pcdata(curl_log) %></pre>
+        </div>
+        <div class="cbi-section">
+            <% 
+                local logs=luci.sys.exec("logread -e crond | tail -n 5") 
+            %>
+            <pre class="clean-log"><%= luci.util.pcdata(logs) %></pre>
+        </div>
     </div>
-    <div class="cbi-section">
-        <h3><%:CURL Logs%></h3>   
-        <% 
-            local curl_log = luci.sys.exec("cat /etc/campus_network/curl_log.txt | tail -n 1") 
-        %>      
-        <pre class="clean-log"><%= luci.xml.pcdata(curl_log) %></pre>
-    </div>
-</div>
-
 <%+footer%>
