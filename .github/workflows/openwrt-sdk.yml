@@ -66,7 +66,7 @@ jobs:
         FULL_URL="${{ env.BASE_URL }}/${{ env.RELEASE_VERSION }}/targets/${{ env.TARGET_SYATEM }}/${{ env.SUBTARGET }}/${SDK_NAME}"
         echo "release_version=$FULL_URL" >> $GITHUB_OUTPUT
         wget $FULL_URL
-        if [ "$RELEASE_VERSION" == "24.10.0" ]; then
+        if [ "${{ env.RELEASE_VERSION }}" == "24.10.0" ]; then
           mkdir sdk && tar --zstd -xvf $SDK_NAME -C ./sdk --strip-components=1
         else
           mkdir sdk && tar -xvf $SDK_NAME -C ./sdk --strip-components=1
@@ -74,6 +74,7 @@ jobs:
 
     - name: 更新&&下载 feeds
       run: |
+        pwd
         cd sdk
         git clone -b master https://github.com/${{ github.repository }}.git package/${{ env.PACKAGE }}
         ./scripts/feeds update -a && ./scripts/feeds install -a
