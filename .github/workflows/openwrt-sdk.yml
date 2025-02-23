@@ -64,7 +64,6 @@ jobs:
         fi
         SDK_NAME="openwrt-sdk-${{ env.RELEASE_VERSION }}-${{ env.TARGET_SYATEM }}-${{ env.SUBTARGET }}_${{ env.TOOLCHAIN }}.Linux-x86_64.${EXTENSION}"
         FULL_URL="${{ env.BASE_URL }}/${{ env.RELEASE_VERSION }}/targets/${{ env.TARGET_SYATEM }}/${{ env.SUBTARGET }}/${SDK_NAME}"
-        echo "release_version=$FULL_URL" >> $GITHUB_OUTPUT
         wget $FULL_URL
         if [ "${{ env.RELEASE_VERSION }}" == "24.10.0" ]; then
           mkdir sdk && tar --zstd -xvf $SDK_NAME -C ./sdk --strip-components=1
