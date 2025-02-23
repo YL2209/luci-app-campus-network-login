@@ -75,7 +75,7 @@ jobs:
       run: |
         pwd
         cd sdk
-        git clone -b master https://github.com/${{ github.repository }}.git package/${{ env.PACKAGE }}
+        git clone https://github.com/${{ github.repository }}.git package/${{ env.PACKAGE }}
         ./scripts/feeds update -a && ./scripts/feeds install -a
 
     - name: 配置.config
