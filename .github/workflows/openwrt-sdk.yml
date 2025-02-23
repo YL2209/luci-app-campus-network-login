@@ -121,6 +121,7 @@ jobs:
         touch release.txt
         [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
+        echo "${{ env.FIRMWARE }}/*.ipk"
 
     - name: Upload firmware to release
       uses: softprops/action-gh-release@master
@@ -130,7 +131,7 @@ jobs:
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*.ipk
+        files: ${{ env.FIRMWARE }}/*
 
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@main
