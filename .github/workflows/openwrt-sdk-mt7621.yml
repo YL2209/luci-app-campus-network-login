@@ -10,7 +10,7 @@
 # See /LICENSE for more information.
 #
 
-name: OpenWrt-SDK luci-app-campus-network-login
+name: OpenWrt-SDK luci-app-campus-network-login-mt7621
 
 on:
   repository_dispatch:
@@ -18,7 +18,7 @@ on:
   push:
     paths:
       - 'workflows/**'
-      - '.github/workflows/openwrt-sdk.yml'
+      - '.github/workflows/openwrt-sdk-mt7621.yml'
 
 env:
   BASE_URL: https://downloads.openwrt.org/releases
@@ -142,7 +142,7 @@ jobs:
       uses: dev-drprasad/delete-older-releases@master
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        keep_latest: 3
+        keep_latest: 5
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
