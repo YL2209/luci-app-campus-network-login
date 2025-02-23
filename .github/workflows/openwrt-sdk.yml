@@ -70,6 +70,7 @@ jobs:
         else
           mkdir sdk && tar -xvf $SDK_NAME -C ./sdk --strip-components=1
         fi
+        ln -sf /workdir/sdk $GITHUB_WORKSPACE/sdk
 
     - name: 更新&&下载 feeds
       run: |
