@@ -102,11 +102,6 @@ jobs:
         echo -e "make package/${{ env.PACKAGE }}/{clean,compile} -j$(nproc)"
         make package/${{ env.PACKAGE }}/{clean,compile} -j$(nproc)
         echo "status=success" >> $GITHUB_OUTPUT
-        PLUGIN_NAME=$(ls bin/packages/*/base/*.ipk | head -n 1 | xargs -n 1 basename | sed 's/\.ipk$//')
-        if [ -n "$PLUGIN_NAME" ]; then
-          echo "PLUGIN_NAME=_$PLUGIN_NAME" >> $GITHUB_ENV
-        fi
-        echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
         cd bin/packages/*/base/
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
 
@@ -118,7 +113,7 @@ jobs:
       id: tag
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
+        echo "release_tag=$(date +"%Y.%m.%d-%H%M")-${{ env.TARGET_SYATEM }}-${{ env.SUBTARGET }}" >> $GITHUB_OUTPUT
         touch release.txt
         [ ${UPLOAD_GOFILE} = true && ${{ steps.gofile.outputs.url }} ] && echo "🔗 [GoFile](${{ steps.gofile.outputs.url }})" >> release.txt
         echo "status=success" >> $GITHUB_OUTPUT
