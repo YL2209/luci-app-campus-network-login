@@ -100,7 +100,7 @@ jobs:
         echo -e "make package/${{ env.PACKAGE }}/{clean,compile} -j$(nproc)"
         make package/${{ env.PACKAGE }}/{clean,compile} -j$(nproc)
         echo "status=success" >> $GITHUB_OUTPUT
-        PLUGIN_NAME=$(ls bin/packages/mipsel_24kc/base/*.ipk | head -n 1 | xargs -n 1 basename | sed 's/\.ipk$//')
+        PLUGIN_NAME=$(ls bin/packages/*/base/*.ipk | head -n 1 | xargs -n 1 basename | sed 's/\.ipk$//')
         if [ -n "$PLUGIN_NAME" ]; then
           echo "PLUGIN_NAME=_$PLUGIN_NAME" >> $GITHUB_ENV
         fi
