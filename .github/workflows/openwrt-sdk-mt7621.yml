@@ -27,6 +27,7 @@ env:
   RELEASE_VERSION: 24.10.0
   TOOLCHAIN: gcc-13.3.0_musl
   PACKAGE: luci-app-campus-network-login
+  PACKAGE2: campus-network-login
   DIY_P_SH: workflows/diy-part.sh
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
@@ -130,7 +131,7 @@ jobs:
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*.ipk
+        files: ${{ env.FIRMWARE }}/*${{ env.PACKAGE2 }}*.ipk
 
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@main
