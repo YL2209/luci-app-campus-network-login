@@ -12,7 +12,6 @@
     "write": {
       "uci": [ "campus_network" ],
       "file": {
-        "/etc/config/campus_network": [ "write" ],
         "/etc/campus_network/*": [ "write" ]
       }
     }
