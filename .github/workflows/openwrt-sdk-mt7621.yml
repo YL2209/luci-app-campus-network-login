@@ -18,6 +18,7 @@ on:
   push:
     paths:
       - 'luasrc/**'
+      - 'Makefile'
       - '.github/workflows/openwrt-sdk-mt7621.yml'
 
 env:
