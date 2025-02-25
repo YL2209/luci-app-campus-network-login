@@ -1,5 +1,6 @@
 #!/bin/bash
 
+git clone https://github.com/YL2209/luci-app-campus-network-login.git package/luci-app-campus-network-login
 ./scripts/feeds install luci-app-campus-network-login
 echo "CONFIG_ALL_NONSHARED=n" > .config
 echo "CONFIG_ALL_KMODS=n" >> .config

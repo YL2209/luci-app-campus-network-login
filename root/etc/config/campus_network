@@ -1,4 +1,4 @@
-config login 'login'
+config login
 	option username '123456789000'
 	option pwd '123456'
 	option wlanuserip '132af1ce6c89eef5260c1d615182397b'
@@ -6,4 +6,9 @@ config login 'login'
 	option login_url 'http://10.0.1.2:9090/zportal/login/do'
 	option ping_ip '114.114.114.114'
 	option max_attempts '5'
-	option cron_schedule '*/1 * * * *'
+
+config cron
+	option minute '1'
+	option hour '0'
+	option week '7'
+	option enable '0'

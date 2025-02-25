@@ -4,6 +4,7 @@
     "read": {
       "uci": [ "campus_network" ],
       "file": {
+				"/etc/init.d/campus_network": [ "exec" ],
         "/usr/libexec/campus_login": [ "exec" ],
         "/etc/campus_network/*": [ "read" ]
       }

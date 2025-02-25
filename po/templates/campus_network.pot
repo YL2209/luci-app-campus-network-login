@@ -7,7 +7,7 @@ msgstr ""
 msgid "Campus Network Login Settings"
 msgstr ""
 
-msgid "Configure parameters for campus network authentication and scheduling."
+msgid "Configure parameters for campus network authentication and scheduling.<br /><br />Please refer to the document for details:<a href="https://blog.naokuo.top/p/522a17f8.html" target="_blank">Click to view document</a></a>"
 msgstr ""
 
 msgid "Login Parameters"
@@ -16,37 +16,67 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
+msgid "Usually for your student ID."
+msgstr ""
+
 msgid "Password"
 msgstr ""
 
 msgid "WLAN User IP"
 msgstr ""
 
-msgid "NAS IP"
+msgid "Network Access Server IP"
 msgstr ""
 
 msgid "Login URL"
-msgstr ""
-
-msgid "Max Attempts"
-msgstr ""
-
-msgid "Cron Schedule"
-msgstr ""
-
-msgid "Cron expression (e.g. '*/1 * * * *' for every 1 minutes)"
-msgstr ""
-
-msgid "Click to view documentation"
-msgstr ""
-
-msgid "Documentation"
 msgstr ""
 
 msgid "Ping Test IP"
 msgstr ""
 
 msgid "IP address for network connectivity detection (e.g. 114.114.114.114)"
+msgstr ""
+
+msgid "Max Attempts"
+msgstr ""
+
+msgid "Plan tasks."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Week Day"
+msgstr ""
+
+msgid "Everyday"
+msgstr ""
+
+msgid "Monday"
+msgstr ""
+
+msgid "Tuesday"
+msgstr ""
+
+msgid "Wednesday"
+msgstr ""
+
+msgid "Thursday"
+msgstr ""
+
+msgid "Friday"
+msgstr ""
+
+msgid "Saturday"
+msgstr ""
+
+msgid "Sunday"
+msgstr ""
+
+msgid "Hour"
+msgstr ""
+
+msgid "Minute"
 msgstr ""
 
 msgid "View Logs"

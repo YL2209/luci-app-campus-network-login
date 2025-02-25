@@ -11,52 +11,82 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Campus Network Login"
-msgstr "校园网认证"
+msgstr "校园网络登录"
 
 msgid "Campus Network Login Settings"
-msgstr "校园网认证设置"
+msgstr "校园网络登录设置"
 
-msgid "Configure parameters for campus network authentication and scheduling."
-msgstr "配置校园网认证参数和定时任务"
+msgid "Configure parameters for campus network authentication and scheduling.<br /><br />Please refer to the document for details:<a href="https://blog.naokuo.top/p/522a17f8.html" target="_blank">Click to view document</a>"
+msgstr "配置校园网络认证和调度的参数。<br /><br />详情请参考文档：<a href="https://blog.naokuo.top/p/522a17f8.html" target="_blank">点击查看文档</a>"
 
 msgid "Login Parameters"
-msgstr "认证参数"
+msgstr "登录参数"
 
 msgid "Username"
 msgstr "用户名"
+
+msgid "Usually for your student ID."
+msgstr "通常是你的学号。"
 
 msgid "Password"
 msgstr "密码"
 
 msgid "WLAN User IP"
-msgstr "用户 IP 地址"
+msgstr "无线局域网用户IP"
 
-msgid "NAS IP"
-msgstr "接入点 IP"
+msgid "Network Access Server IP"
+msgstr "网络接入服务器IP"
 
 msgid "Login URL"
-msgstr "认证地址"
+msgstr "登录网址"
+
+msgid "Ping Test IP"
+msgstr "Ping测试IP"
+
+msgid "IP address for network connectivity detection (e.g. 114.114.114.114)"
+msgstr "用于网络连接检测的IP地址（例如 114.114.114.114）"
 
 msgid "Max Attempts"
 msgstr "最大尝试次数"
 
-msgid "Cron Schedule"
-msgstr "定时计划"
+msgid "Plan tasks."
+msgstr "计划任务。"
 
-msgid "Cron expression (e.g. '*/1 * * * *' for every 1 minutes)"
-msgstr "Cron表达式 (例如：'*/1 * * * *' 表示每1分钟)"
+msgid "Enable"
+msgstr "启用"
 
-msgid "Click to view documentation"
-msgstr "点击查看文档"
+msgid "Week Day"
+msgstr "星期几"
 
-msgid "Documentation"
-msgstr "文档"
+msgid "Everyday"
+msgstr "每天"
 
-msgid "Ping Test IP"
-msgstr "网络检测 IP"
+msgid "Monday"
+msgstr "星期一"
 
-msgid "IP address for network connectivity detection (e.g. 114.114.114.114)"
-msgstr "用于网络连通性检测的IP地址（如：114.114.114.114）"
+msgid "Tuesday"
+msgstr "星期二"
+
+msgid "Wednesday"
+msgstr "星期三"
+
+msgid "Thursday"
+msgstr "星期四"
+
+msgid "Friday"
+msgstr "星期五"
+
+msgid "Saturday"
+msgstr "星期六"
+
+msgid "Sunday"
+msgstr "星期日"
+
+msgid "Hour"
+msgstr "小时"
+
+msgid "Minute"
+msgstr "分钟"
 
 msgid "View Logs"
 msgstr "查看日志"
@@ -68,4 +98,4 @@ msgid "Logs Info"
 msgstr "日志信息"
 
 msgid "CURL Logs"
-msgstr "请求日志"
+msgstr "CURL日志" 

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+chmod +x /usr/libexec/campus_login
+chmod +x /etc/init.d/campus_network
+
+uci -q batch <<-EOF >/dev/null
+	delete ucitrack.@campus_network[-1]
+	add ucitrack campus_network
+	set ucitrack.@campus_network[-1].init=campus_network
+	commit ucitrack
+EOF
+
+rm -rf /tmp/luci-*
+exit 0

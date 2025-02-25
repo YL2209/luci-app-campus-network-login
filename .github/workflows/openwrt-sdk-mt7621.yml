@@ -10,14 +10,14 @@
 # See /LICENSE for more information.
 #
 
-name: OpenWrt-SDK luci-app-campus-network-login-mt7621
+name: OpenWrt-SDK
 
 on:
   repository_dispatch:
   workflow_dispatch:
   push:
     paths:
-      - 'workflows/**'
+      - '/**'
       - '.github/workflows/openwrt-sdk-mt7621.yml'
 
 env:
@@ -27,7 +27,8 @@ env:
   RELEASE_VERSION: 24.10.0
   TOOLCHAIN: gcc-13.3.0_musl
   PACKAGE: luci-app-campus-network-login
-  PACKAGE2: campus-network-login
+  PACKAGE_IPK: campus
+  IPK_ALL: false
   DIY_P_SH: workflows/diy-part.sh
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
@@ -75,9 +76,7 @@ jobs:
 
     - name: 更新&&下载 feeds
       run: |
-        pwd
         cd sdk
-        git clone https://github.com/${{ github.repository }}.git package/${{ env.PACKAGE }}
         ./scripts/feeds update -a && ./scripts/feeds install -a
 
     - name: 配置.config
@@ -102,8 +101,40 @@ jobs:
         echo -e "make package/${{ env.PACKAGE }}/{clean,compile} -j$(nproc)"
         make package/${{ env.PACKAGE }}/{clean,compile} -j$(nproc)
         echo "status=success" >> $GITHUB_OUTPUT
-        cd bin/packages/*/base/
-        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+
+    - name: Determine files to upload
+      id: determine-files
+      run: |
+        cd sdk
+        if [ "${{ env.IPK_ALL }}" == true ]; then
+          tar -zcvf ipk_all.tar.gz bin
+          echo "$PWD"
+          echo "FIRMWARE=$PWD/ipk_all.tar.gz" >> $GITHUB_ENV
+        else
+          mkdir -p bin/ipk
+          patterns=(
+            "bin/packages/*/base/"
+            "bin/packages/*/luci/"
+            "bin/packages/*/packages/"
+            "bin/targets/*/*/packages/"
+          )
+          for pattern in "${patterns[@]}"; do
+            for dir in $(find $(dirname $pattern) -type d -name $(basename $pattern)); do
+              if [ -d "$dir" ]; then
+                mv "$dir"/* bin/ipk 2>/dev/null
+                if [ $? -eq 0 ]; then
+                  echo "成功将 $dir 下的文件移动到 bin/ipk"
+                else
+                  echo "移动 $dir 下的文件时出错"
+                fi
+              fi
+            done
+          done
+          cd bin/ipk
+          echo "$PWD"
+          echo "FIRMWARE=$PWD/*${{ env.PACKAGE_IPK }}*" >> $GITHUB_ENV
+        fi
+        echo "status=success" >> $GITHUB_OUTPUT
 
     - name: Check space usage
       if: (!cancelled())
@@ -126,8 +157,8 @@ jobs:
       with:
         tag_name: ${{ steps.tag.outputs.release_tag }}
         body_path: release.txt
-        files: ${{ env.FIRMWARE }}/*${{ env.PACKAGE2 }}*.ipk
-
+        files: ${{ env.FIRMWARE }}
+          
     - name: Delete workflow runs
       uses: Mattraks/delete-workflow-runs@main
       with:
