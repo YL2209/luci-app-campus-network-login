@@ -46,14 +46,11 @@ msgstr "用于网络连接检测的IP地址（例如 114.114.114.114）"
 msgid "Max Attempts"
 msgstr "最大尝试次数"
 
-msgid "Plan tasks."
-msgstr "计划任务。"
+msgid "Cron Schedule"
+msgstr "定时计划"
 
-msgid "Enable"
-msgstr "启用"
-
-msgid "Minute"
-msgstr "分钟"
+msgid "Cron expression (e.g. '*/1 * * * *' for every 1 minutes)"
+msgstr "Cron表达式 (例如：'*/1 * * * *' 表示每1分钟)"
 
 msgid "View Logs"
 msgstr "查看日志"

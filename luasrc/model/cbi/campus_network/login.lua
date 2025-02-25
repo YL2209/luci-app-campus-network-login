@@ -33,22 +33,31 @@ attempts = s:option(Value, "max_attempts", translate("Max Attempts"));
 attempts.datatype = "uinteger";
 attempts.rmempty = false;
 
+-- Cron Schedule
+cron_schedule = s:option(Value, "cron_schedule", translate("Cron Schedule"), translate("Cron expression (e.g. '*/1 * * * *' for every 1 minutes)"))
+cron_schedule.rmempty = false
 
-cron = m:section(TypedSection, "cron", translate("Plan tasks."))
-cron.addremove = false
-cron.anonymous = true
+function m.on_after_commit(self)
+    local uci = require "luci.model.uci".cursor()
+    local cron_schedule = uci:get("campus_network", "login", "cron_schedule") or ""
+    local script_path = "/usr/libexec/campus_login"
 
-enable = cron:option(Flag,"enable", translate("Enable"))
-enable.rmempty = false
-enable.default = 0
-
-minute = cron:option(Value, "minute", translate("Minute"))
-minute.rmempty = false
-
-
-local e = luci.http.formvalue("cbi.apply")
-if e then
-    io.popen("/etc/init.d/campus_network restart")
+    -- 安全删除旧任务
+    os.execute("crontab -l | grep -v '"..script_path.."' | crontab -")
+    
+    if cron_schedule ~= "" and cron_schedule ~= nil then
+        -- 验证Cron表达式格式
+        if not cron_schedule:match("%S+ %S+ %S+ %S+ %S+") then
+            luci.http.redirect(luci.dispatcher.build_url("admin/services/campus_network"))
+            return
+        end
+        
+        -- 安全添加新任务
+        os.execute("(crontab -l; echo '"..cron_schedule.." "..script_path.."') | crontab -")
+        
+        -- 重启cron服务
+        os.execute("/etc/init.d/cron restart >/dev/null 2>&1")
+    end
 end
 
 return m

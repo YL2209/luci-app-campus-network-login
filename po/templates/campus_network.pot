@@ -40,10 +40,10 @@ msgstr ""
 msgid "Plan tasks."
 msgstr ""
 
-msgid "Enable"
+msgid "Cron Schedule"
 msgstr ""
 
-msgid "Minute"
+msgid "Cron expression (e.g. '*/1 * * * *' for every 1 minutes)"
 msgstr ""
 
 msgid "View Logs"
