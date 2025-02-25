@@ -13,38 +13,23 @@ run_reboot()
     # 检查语法，添加空格
     if [ $enable = 1 ]; then
         local minute
-        local hour
-        local week
-        config_get week $1 week
         config_get minute $1 minute
-        config_get hour $1 hour
 
         # 合法性检查和处理
         if [ -z "$minute" ]; then
             echo "Error: minute configuration is missing."
             return 1
         fi
-        if [ -z "$hour" ]; then
-            echo "Error: hour configuration is missing."
-            return 1
-        fi
-        if [ -z "$week" ]; then
-            echo "Error: week configuration is missing."
-            return 1
-        fi
 
         if [ $minute = 0 ]; then
-            minute="00"
-        fi
-        if [ $week = 7 ]; then
-            week="*"
+            minute="*"
         fi
 
         # 移除包含指定字符串的 cron 任务
         crontab -l | grep -v "$CAMPUS_LOGIN_PATH" | crontab -
 
         # 添加新的 cron 任务
-        echo "$minute $hour * * $week $CAMPUS_LOGIN_PATH" >> $CRONTAB_FILE
+        echo "$minute * * * * $CAMPUS_LOGIN_PATH" >> $CRONTAB_FILE
         echo "Auto REBOOT has started."
     else
         # 移除包含指定字符串的 cron 任务

@@ -42,23 +42,7 @@ enable = cron:option(Flag,"enable", translate("Enable"))
 enable.rmempty = false
 enable.default = 0
 
-week = cron:option(ListValue, "week", translate("Week Day"))
-week:value(7, translate("Everyday"))
-week:value(1, translate("Monday"))
-week:value(2, translate("Tuesday"))
-week:value(3, translate("Wednesday"))
-week:value(4, translate("Thursday"))
-week:value(5, translate("Friday"))
-week:value(6, translate("Saturday"))
-week:value(0, translate("Sunday"))
-week.default = 0
-
-hour = cron:option(Value, "hour", translate("Hour"))
-hour.datatype = "range(0,23)"
-hour.rmempty = false
-
 minute = cron:option(Value, "minute", translate("Minute"))
-minute.datatype = "range(1,59)"
 minute.rmempty = false
 
 

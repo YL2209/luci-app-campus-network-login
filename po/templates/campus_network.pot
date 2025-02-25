@@ -43,36 +43,6 @@ msgstr ""
 msgid "Enable"
 msgstr ""
 
-msgid "Week Day"
-msgstr ""
-
-msgid "Everyday"
-msgstr ""
-
-msgid "Monday"
-msgstr ""
-
-msgid "Tuesday"
-msgstr ""
-
-msgid "Wednesday"
-msgstr ""
-
-msgid "Thursday"
-msgstr ""
-
-msgid "Friday"
-msgstr ""
-
-msgid "Saturday"
-msgstr ""
-
-msgid "Sunday"
-msgstr ""
-
-msgid "Hour"
-msgstr ""
-
 msgid "Minute"
 msgstr ""
 

@@ -52,36 +52,6 @@ msgstr "计划任务。"
 msgid "Enable"
 msgstr "启用"
 
-msgid "Week Day"
-msgstr "星期几"
-
-msgid "Everyday"
-msgstr "每天"
-
-msgid "Monday"
-msgstr "星期一"
-
-msgid "Tuesday"
-msgstr "星期二"
-
-msgid "Wednesday"
-msgstr "星期三"
-
-msgid "Thursday"
-msgstr "星期四"
-
-msgid "Friday"
-msgstr "星期五"
-
-msgid "Saturday"
-msgstr "星期六"
-
-msgid "Sunday"
-msgstr "星期日"
-
-msgid "Hour"
-msgstr "小时"
-
 msgid "Minute"
 msgstr "分钟"
 

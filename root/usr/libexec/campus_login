@@ -23,12 +23,7 @@ log_to_system() {
 }
 
 # 检查必要参数
-if [ -z "$USERNAME" ] || \
-   [ -z "$PWD" ] || \
-   [ -z "$WLANUSERIP" ] || \
-   [ -z "$NASIP" ] || \
-   [ -z "$LOGIN_URL" ]
-then
+if [ -z "$USERNAME" ] || [ -z "$PWD" ] || [ -z "$WLANUSERIP" ] || [ -z "$NASIP" ] || [ -z "$LOGIN_URL" ] ; then
     log_to_system err "配置错误-缺少参数！"
     exit 1
 fi

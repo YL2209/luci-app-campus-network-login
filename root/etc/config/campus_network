@@ -1,4 +1,4 @@
-config login
+config login 'login'
 	option username '123456789000'
 	option pwd '123456'
 	option wlanuserip '132af1ce6c89eef5260c1d615182397b'
@@ -7,8 +7,6 @@ config login
 	option ping_ip '114.114.114.114'
 	option max_attempts '5'
 
-config cron
-	option minute '1'
-	option hour '0'
-	option week '7'
+config cron 'cron'
 	option enable '0'
+	option minute '1'
