@@ -17,7 +17,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - '/**'
+      - 'luasrc/**'
       - '.github/workflows/openwrt-sdk-mt7621.yml'
 
 env:

@@ -7,9 +7,6 @@ msgstr ""
 msgid "Campus Network Login Settings"
 msgstr ""
 
-msgid "Configure parameters for campus network authentication and scheduling.<br /><br />Please refer to the document for details:<a href="https://blog.naokuo.top/p/522a17f8.html" target="_blank">Click to view document</a></a>"
-msgstr ""
-
 msgid "Login Parameters"
 msgstr ""
 

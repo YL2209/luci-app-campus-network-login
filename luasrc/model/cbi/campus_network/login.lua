@@ -1,7 +1,7 @@
 require("luci.sys")
 
 m = Map("campus_network", translate("Campus Network Login Settings"),
-    translate('Configure parameters for campus network authentication and scheduling.<br /><br />Please refer to the document for details:<a href="https://blog.naokuo.top/p/522a17f8.html" target="_blank">Click to view document</a>'));
+    translate('配置校园网络认证和调度的参数。<br /><br />详情请参考文档：<a href="https://blog.naokuo.top/p/522a17f8.html" target="_blank">点击查看文档</a>'));
 
 s = m:section(TypedSection, "login", translate("Login Parameters"));
 s.anonymous = true;
