@@ -32,17 +32,6 @@ fi
 LOGIN_DATA="username=$USERNAME&pwd=$PWD&validCodeFlag=false&wlanuserip=$WLANUSERIP&nasip=$NASIP"
 ATTEMPT=0
 
-CURL_LOG="/etc/campus_network/curl_log.txt"
-# 执行 curl 并记录
-attempt_login() {
-    local output=$(curl -s -d "$LOGIN_DATA" "$LOGIN_URL")
-    # 记录到文件
-    echo "$output" > "$CURL_LOG"
-    # 同时记录到系统日志
-    # log_to_system "notice" "CURL Output: $(cat "$CURL_LOG")"
-    return $?
-}
-
 check_network() {
     ping -c 1 -W 3 "$PING_IP" > /dev/null 2>&1
     return $?
@@ -54,8 +43,8 @@ while [ "$ATTEMPT" -lt "$MAX_ATTEMPTS" ]; do
         break
     else
         log_to_system notice "尝试【$((ATTEMPT+1))】登录..."
-        attempt_login()
-        sleep 10
+        curl -s -d "$LOGIN_DATA" "$LOGIN_URL" -o "/etc/campus_network/curl_log.txt"
+        sleep 15
         ATTEMPT=$((ATTEMPT + 1))
     fi
 done
