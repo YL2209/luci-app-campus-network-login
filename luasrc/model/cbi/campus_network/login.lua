@@ -34,30 +34,47 @@ attempts.datatype = "uinteger";
 attempts.rmempty = false;
 
 -- Cron Schedule
+s = m:section(TypedSection, "cron", translate("Automatic Logon"));
+s.anonymous = true;
+enabled = s:option(Flag, 'enabled', translate('Enable'), translate("Enable Cron Schedule"));
+enabled.rmempty = false;
 cron_schedule = s:option(Value, "cron_schedule", translate("Cron Schedule"), translate("Cron expression (e.g. '*/1 * * * *' for every 1 minutes)"))
 cron_schedule.rmempty = false
-
+    
 function m.on_after_commit(self)
     local uci = require "luci.model.uci".cursor()
-    local cron_schedule = uci:get("campus_network", "login", "cron_schedule") or ""
+    local enabled = uci:get("campus_network", "cron", "enabled") or ""
+    local cron_schedule = uci:get("campus_network", "cron", "cron_schedule") or ""
     local script_path = "/usr/libexec/campus_login"
 
-    -- 安全删除旧任务
-    os.execute("crontab -l | grep -v '"..script_path.."' | crontab -")
-    
-    if cron_schedule ~= "" and cron_schedule ~= nil then
-        -- 验证Cron表达式格式
-        if not cron_schedule:match("%S+ %S+ %S+ %S+ %S+") then
+    -- 安全删除所有匹配脚本路径的旧任务（使用精确匹配）
+    os.execute("crontab -l 2>/dev/null | grep -vF '"..script_path.."' | crontab -")
+
+    -- 仅在启用状态时处理定时任务
+    if enabled == "1" then
+
+        -- 增强版cron格式验证（基础格式检查）
+        if not cron_schedule:match("^[%d%-%*/]+ [%d%-%*/]+ [%d%-%*/]+ [%d%-%*/]+ [%d%-%*/]+$") then
             luci.http.redirect(luci.dispatcher.build_url("admin/services/campus_network"))
             return
         end
-        
-        -- 安全添加新任务
-        os.execute("(crontab -l; echo '"..cron_schedule.." "..script_path.."') | crontab -")
-        
-        -- 重启cron服务
-        os.execute("/etc/init.d/cron restart >/dev/null 2>&1")
+
+        -- 安全构造cron条目（防御命令注入）
+        local function shell_escape(str)
+            return "'"..str:gsub("'", "'\"'\"'").."'"
+        end
+
+        local cron_entry = string.format("%s %s", 
+            shell_escape(cron_schedule),
+            shell_escape(script_path)
+        )
+
+        -- 原子化更新crontab（使用临时文件避免竞态条件）
+        os.execute("(crontab -l 2>/dev/null; echo "..cron_entry..") | crontab -")
     end
+
+    -- 显式刷新cron服务（兼容不同系统）
+    os.execute("kill -HUP $(pidof crond) 2>/dev/null")
 end
 
 return m

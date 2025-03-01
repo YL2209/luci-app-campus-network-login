@@ -57,3 +57,12 @@ msgstr ""
 
 msgid "CURL Logs"
 msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Automatic Logon"
+msgstr ""
+
+msgid "Enable Cron Schedule"
+msgstr ""

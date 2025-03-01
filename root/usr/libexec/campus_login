@@ -44,7 +44,7 @@ while [ "$ATTEMPT" -lt "$MAX_ATTEMPTS" ]; do
     else
         log_to_system notice "尝试【$((ATTEMPT+1))】登录..."
         curl -s -d "$LOGIN_DATA" "$LOGIN_URL" -o "/etc/campus_network/curl_log.txt"
-        sleep 15
+        sleep 10
         ATTEMPT=$((ATTEMPT + 1))
     fi
 done

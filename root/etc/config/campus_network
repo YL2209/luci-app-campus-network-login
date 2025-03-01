@@ -6,4 +6,7 @@ config login 'login'
 	option login_url 'http://10.0.1.2:9090/zportal/login/do'
 	option ping_ip '114.114.114.114'
 	option max_attempts '5'
+
+config cron 'cron'
+	option enabled '0'
 	option cron_schedule '*/1 * * * *'

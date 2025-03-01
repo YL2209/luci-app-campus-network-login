@@ -63,3 +63,12 @@ msgstr "日志信息"
 
 msgid "CURL Logs"
 msgstr "CURL日志" 
+
+msgid "Enable"
+msgstr "启用"
+
+msgid "Automatic Logon"
+msgstr "自动登录"
+
+msgid "Enable Cron Schedule"
+msgstr "启用定时计划"
