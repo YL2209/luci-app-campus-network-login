@@ -73,8 +73,8 @@ function m.on_after_commit(self)
         os.execute("(crontab -l 2>/dev/null; echo "..cron_entry..") | crontab -")
     end
 
-    -- 显式刷新cron服务（兼容不同系统）
-    os.execute("kill -HUP $(pidof crond) 2>/dev/null")
+    -- 重启cron服务
+    os.execute("/etc/init.d/cron restart >/dev/null 2>&1")
 end
 
 return m
