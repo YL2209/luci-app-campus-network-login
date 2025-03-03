@@ -45,7 +45,7 @@ function m.on_after_commit(self)
     local uci = require "luci.model.uci".cursor()
     local enabled = uci:get("campus_network", "cron", "enabled") or ""
     local cron_schedule = uci:get("campus_network", "cron", "cron_schedule") or ""
-    local script_path = "/usr/libexec/campus_login"
+    local script_path = "/usr/libexec/campus_login >/dev/null 2>&1"
 
     -- 安全删除所有匹配脚本路径的旧任务（使用精确匹配）
     os.execute("crontab -l 2>/dev/null | grep -vF '"..script_path.."' | crontab -")
@@ -54,7 +54,7 @@ function m.on_after_commit(self)
     if enabled == "1" then
 
         -- 增强版cron格式验证（基础格式检查）
-        if not cron_schedule:match("^[%d%-%*/]+ [%d%-%*/]+ [%d%-%*/]+ [%d%-%*/]+ [%d%-%*/]+$") then
+        if not cron_schedule:match("^[%d%-%*/%,]+ [%d%-%*/%,]+ [%d%-%*/%,]+ [%d%-%*/%,]+ [%d%-%*/%,]+$") then
             luci.http.redirect(luci.dispatcher.build_url("admin/services/campus_network"))
             return
         end
@@ -70,11 +70,11 @@ function m.on_after_commit(self)
         )
 
         -- 原子化更新crontab（使用临时文件避免竞态条件）
-        os.execute("(crontab -l 2>/dev/null; echo "..cron_entry..") | crontab -")
+        os.execute("tempfile=$(mktemp) && crontab -l 2>/dev/null > $tempfile; echo "..cron_entry.." >> $tempfile; crontab $tempfile; rm -f $tempfile")
     end
 
     -- 重启cron服务
-    os.execute("/etc/init.d/cron restart >/dev/null 2>&1")
+    os.execute("/etc/init.d/cron reload >/dev/null")
 end
 
 return m

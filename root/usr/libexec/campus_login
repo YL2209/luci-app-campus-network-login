@@ -33,7 +33,7 @@ LOGIN_DATA="username=$USERNAME&pwd=$PWD&validCodeFlag=false&wlanuserip=$WLANUSER
 ATTEMPT=0
 
 check_network() {
-    ping -c 1 -W 3 "$PING_IP" > /dev/null 2>&1
+    ping -c 1 -W 2 "$PING_IP" > /dev/null 2>&1
     return $?
 }
 
