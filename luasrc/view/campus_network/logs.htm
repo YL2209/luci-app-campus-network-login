@@ -1,3 +1,24 @@
+<% 
+-- 处理轮询请求
+local poll = luci.http.formvalue("poll")
+if poll == "1" then
+    local log_type = luci.http.formvalue("log_type")
+    local content = "Invalid log type"
+    
+    if log_type == "info" then
+        content = luci.sys.exec("cat /etc/campus_network/log.txt | tail -n 10 | sed '/^$/d'")
+    elseif log_type == "curl" then
+        content = luci.sys.exec("cat /etc/campus_network/curl_log.txt | tail -n 1")
+    elseif log_type == "crond" then
+        content = luci.sys.exec("logread -e crond | tail -n 5")
+    end
+    
+    luci.http.prepare_content("text/plain")
+    luci.http.write(content)
+    return
+end
+%>
+
 <%+header%>
     <div class="cbi-map">
         <style>
@@ -12,27 +33,44 @@
                 word-wrap: break-word;
                 overflow-y: auto;
                 max-height: 600px;
+                background: #00000061;
+                transition: opacity 0.3s;
             }
         </style>
         <div class="cbi-section">
             <h3><%:Logs Info%></h3>
-            <% 
-                local logs=luci.sys.exec("cat /etc/campus_network/log.txt | tail -n 10 | sed '/^$/d'") 
-            %>
-            <pre class=" clean-log"><%= luci.xml.pcdata(logs) %></pre>
+            <pre id="log-info" class="clean-log"><%= luci.xml.pcdata(luci.sys.exec("cat /etc/campus_network/log.txt | tail -n 10 | sed '/^$/d")) %></pre>
         </div>
         <div class="cbi-section">
             <h3><%:CURL Logs%></h3>
-            <% 
-                local curl_log=luci.sys.exec("cat /etc/campus_network/curl_log.txt | tail -n 1") 
-            %>
-            <pre class="clean-log"><%= luci.xml.pcdata(curl_log) %></pre>
+            <pre id="log-curl" class="clean-log"><%= luci.xml.pcdata(luci.sys.exec("cat /etc/campus_network/curl_log.txt | tail -n 1")) %></pre>
         </div>
         <div class="cbi-section">
-            <% 
-                local logs=luci.sys.exec("logread -e crond | tail -n 5") 
-            %>
-            <pre class="clean-log"><%= luci.xml.pcdata(logs) %></pre>
+            <pre id="log-crond" class="clean-log"><%= luci.xml.pcdata(luci.sys.exec("logread -e crond | tail -n 5")) %></pre>
         </div>
     </div>
+
+    <script>
+        function pollLogs(logType, elementId) {
+            XHR.poll(10, '<%=url("admin/services/campus_network/logs/refresh")%>', null,
+                function(xhr, data) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', window.location.pathname + '?poll=1&log_type=' + encodeURIComponent(logType) + '&t=' + Date.now());
+                    xhr.onload = function() {
+                        if (xhr.status === 200) {
+                            document.getElementById(elementId).textContent = xhr.responseText;
+                        }
+                    };
+                    xhr.send();
+                }
+            );
+        }
+
+        // 初始化所有日志轮询
+        document.addEventListener('DOMContentLoaded', function() {
+            pollLogs('info', 'log-info');
+            pollLogs('curl', 'log-curl');
+            pollLogs('crond', 'log-crond');
+        });
+    </script>
 <%+footer%>
